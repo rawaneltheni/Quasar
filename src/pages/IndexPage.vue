@@ -1,13 +1,13 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <product-components :products="products"></product-components>
+    <product-components :products="product"></product-components>
   </q-page>
 </template>
 
 <script lang="ts">
 import { ref } from 'vue';
-
 import ProductComponents from '../components/ProductComponents.vue';
+import { useProductStore } from '../stores/product-store';
 
 interface Product {
   id: number;
@@ -20,7 +20,7 @@ interface Product {
 export default {
   components: { ProductComponents },
   setup() {
-    const products = ref<Product[]>([
+    const product = ref<Product[]>([
       {
         id: 1,
         name: 'Laptop',
@@ -44,8 +44,16 @@ export default {
       },
     ]);
 
+    const store = useProductStore();
+
+    const addToCart = (product: Product) => {
+      store.cart.push(product);
+      store.productCount++;
+    };
+
     return {
-      products,
+      product,
+      addToCart,
     };
   },
 };

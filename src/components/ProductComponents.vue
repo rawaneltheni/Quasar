@@ -17,7 +17,7 @@
         />
       </q-card-actions>
 
-      <q-btn round color="primary" glossy icon="local_grocery_store" />
+      <q-btn round color="primary" glossy icon="local_grocery_store" @click="addToCart(product)" />
 
       <q-slide-transition>
         <div v-show="expanded">
@@ -32,20 +32,34 @@
 </template>
 
 <script lang="ts">
-import { ref, defineProps } from 'vue';
+import { ref } from 'vue';
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  img: string;
+  description: string;
+}
 
 export default {
   name: 'ProductComponents',
   props: {
     products: {
-      type: Array,
+      type: Array as () => Product[],
       required: true,
     },
   },
   setup() {
     const expanded = ref(false);
+
+    function addToCart(product: Product) {
+      console.log('Added to cart', product);
+    }
+
     return {
       expanded,
+      addToCart,
     };
   },
 };

@@ -19,6 +19,7 @@
         <q-item v-for="nav in navs" :key="nav.to" :to="nav.to" clickable :breakpoint="767">
           <q-item-section avatar>
             <q-icon :name="nav.icon" />
+            <span v-if="nav.label === 'Cart'">{{ productStore.productCount }}</span>
           </q-item-section>
 
           <q-item-section>
@@ -42,7 +43,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-// import ProductComponents from 'components/ProductComponents.vue';
+import { useProductStore } from '../stores/product-store';
 
 defineProps<{
   Title: string;
@@ -58,6 +59,8 @@ const navs = ref([
   { label: 'Home', icon: 'home', to: '/' },
   { label: 'Cart', icon: 'shopping_cart', to: '/cart' },
 ]);
+
+const productStore = useProductStore();
 </script>
 
 <style>
@@ -66,6 +69,7 @@ const navs = ref([
     display: none;
   }
 }
+
 /* .q-drawer .q-router-link--exact-active {
   color: whitesmoke;
 } */
