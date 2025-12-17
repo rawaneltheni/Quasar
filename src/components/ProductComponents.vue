@@ -1,5 +1,9 @@
 <template>
-  <div class="q-pa-md row items-start q-gutter-md" v-for="product in products" :key="product.id">
+  <div
+    class="q-pa-md row items-start q-gutter-md"
+    v-for="product in props.products"
+    :key="product.id"
+  >
     <q-card class="my-card" flat bordered>
       <q-img :src="product.img" />
 
@@ -22,7 +26,7 @@
         color="primary"
         glossy
         icon="local_grocery_store"
-        @click="$emit('add-to-cart')"
+        @click="$emit('add-to-cart', product)"
       />
 
       <q-slide-transition>
@@ -37,40 +41,19 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue';
-import { defineEmits } from 'vue';
+import type { Product } from 'src/models/product-models.js';
 
-const emit = defineEmits(['add-to-cart']);
+// const emit = defineEmits(['add-to-cart']);
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-  description: string;
-}
+const props = defineProps({
+  products: Array<Product>,
+});
+const expanded = ref(false);
 
-export default {
-  name: 'ProductComponents',
-  props: {
-    products: {
-      type: Array as () => Product[],
-      required: true,
-    },
-  },
-  setup() {
-    const expanded = ref(false);
-
-    function addToCart(product: Product) {
-      emit('add-to-cart', product);
-      alert('Added to cart');
-    }
-
-    return {
-      expanded,
-      addToCart,
-    };
-  },
-};
+// function addToCart(product: Product) {
+//   emit('add-to-cart', product);
+//   alert('Added to cart');
+// }
 </script>

@@ -64,7 +64,7 @@ const productStore = useProductStore();
 </script>
 
 <style>
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1020px) {
   .q-footer {
     display: none;
   }

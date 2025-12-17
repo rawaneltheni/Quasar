@@ -8,14 +8,7 @@
 import { ref } from 'vue';
 import ProductComponents from '../components/ProductComponents.vue';
 import { useProductStore } from '../stores/product-store.js';
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-  description: string;
-}
+import type { Product } from 'src/models/product-models.js';
 
 export default {
   components: { ProductComponents },
@@ -27,6 +20,7 @@ export default {
         price: 520,
         img: '/imgs/laptop.png',
         description: 'this is a laptop',
+        quantity: 1,
       },
       {
         id: 2,
@@ -34,6 +28,7 @@ export default {
         price: 42,
         img: '/imgs/headphones.png',
         description: 'this is a headphone',
+        quantity: 1,
       },
       {
         id: 3,
@@ -41,14 +36,17 @@ export default {
         price: 15,
         img: '/imgs/keyboard.png',
         description: 'this is a keyboard',
+        quantity: 1,
       },
     ]);
 
     const store = useProductStore();
 
     const addToCart = (product: Product) => {
+      alert('Item added to the cart');
       store.cart.push(product);
       store.productCount++;
+      store.productQuantity++;
     };
 
     return {
