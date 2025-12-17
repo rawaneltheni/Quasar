@@ -42,8 +42,8 @@
 </template>
 
 <script setup lang="ts">
+import { useProductStore } from '../stores/product-store.js';
 import { ref } from 'vue';
-import { useProductStore } from '../stores/product-store';
 
 defineProps<{
   Title: string;

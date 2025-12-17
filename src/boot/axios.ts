@@ -15,8 +15,8 @@ declare module 'vue' {
 // "export default () => {}" function below (which runs individually
 // for each client)
 const api = axios.create({ baseURL: 'https://api.example.com' });
-
-export default defineBoot(({ app }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default defineBoot(({ app }: any) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
   app.config.globalProperties.$axios = axios;

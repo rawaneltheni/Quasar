@@ -17,7 +17,13 @@
         />
       </q-card-actions>
 
-      <q-btn round color="primary" glossy icon="local_grocery_store" @click="addToCart(product)" />
+      <q-btn
+        round
+        color="primary"
+        glossy
+        icon="local_grocery_store"
+        @click="$emit('add-to-cart')"
+      />
 
       <q-slide-transition>
         <div v-show="expanded">
@@ -33,6 +39,9 @@
 
 <script lang="ts">
 import { ref } from 'vue';
+import { defineEmits } from 'vue';
+
+const emit = defineEmits(['add-to-cart']);
 
 interface Product {
   id: number;
@@ -54,7 +63,8 @@ export default {
     const expanded = ref(false);
 
     function addToCart(product: Product) {
-      console.log('Added to cart', product);
+      emit('add-to-cart', product);
+      alert('Added to cart');
     }
 
     return {

@@ -5,8 +5,7 @@ declare namespace NodeJS {
     VUE_ROUTER_BASE: string | undefined;
   }
 }
-declare module '*.vue' {
-  import { DefineComponent } from 'vue';
-  const component: DefineComponent<{}, {}, any>;
-  export default component;
+declare module '#q-app/wrappers' {
+  export * from '@quasar/app-vite';
+  export { defineConfig, defineBoot, defineRouter, defineStore } from '#q-app/wrappers';
 }

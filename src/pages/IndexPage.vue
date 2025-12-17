@@ -1,13 +1,13 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <product-components :products="product"></product-components>
+    <product-components @add-to-cart="addToCart" :products="product"></product-components>
   </q-page>
 </template>
 
 <script lang="ts">
 import { ref } from 'vue';
 import ProductComponents from '../components/ProductComponents.vue';
-import { useProductStore } from '../stores/product-store';
+import { useProductStore } from '../stores/product-store.js';
 
 interface Product {
   id: number;

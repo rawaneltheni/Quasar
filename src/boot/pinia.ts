@@ -1,8 +1,7 @@
-import { boot } from 'quasar/wrappers';
+import { defineBoot } from '#q-app/wrappers';
 import { createPinia } from 'pinia';
-import { markRaw } from 'vue';
-
-export default boot(({ app }) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default defineBoot(({ app }: any) => {
   const pinia = createPinia();
   app.use(pinia);
 });
