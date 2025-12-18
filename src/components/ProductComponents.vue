@@ -44,16 +44,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { Product } from 'src/models/product-models.js';
-
-// const emit = defineEmits(['add-to-cart']);
-
 const props = defineProps({
   products: Array<Product>,
 });
 const expanded = ref(false);
-
-// function addToCart(product: Product) {
-//   emit('add-to-cart', product);
-//   alert('Added to cart');
-// }
 </script>

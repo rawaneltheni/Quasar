@@ -20,7 +20,7 @@ export default {
         price: 520,
         img: '/imgs/laptop.png',
         description: 'this is a laptop',
-        quantity: 1,
+        quantity: 0,
       },
       {
         id: 2,
@@ -28,7 +28,7 @@ export default {
         price: 42,
         img: '/imgs/headphones.png',
         description: 'this is a headphone',
-        quantity: 1,
+        quantity: 0,
       },
       {
         id: 3,
@@ -36,15 +36,20 @@ export default {
         price: 15,
         img: '/imgs/keyboard.png',
         description: 'this is a keyboard',
-        quantity: 1,
+        quantity: 0,
       },
     ]);
 
     const store = useProductStore();
 
     const addToCart = (product: Product) => {
-      alert('Item added to the cart');
-      store.cart.push(product);
+      const existingItem = store.cart.find((item) => item.id === product.id);
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        store.cart.push({ ...product, quantity: 1 });
+      }
       store.productCount++;
       store.productQuantity++;
     };

@@ -10,14 +10,15 @@ export const useProductStore = defineStore('product', {
 
   getters: {
     cartItems: (state) => state.cart,
+    // cartItems: (state) => Object.groupBy(state.cart, ({ id }) => id),
   },
 
   actions: {
     editQuantity(symbol: 'increment' | 'decrement' | 'delete', product: Product) {
-      const index = this.cart.findIndex((p) => p.id === product.id);
+      const index = this.cartItems.findIndex((p) => p.id === product.id);
       if (index === -1) return;
 
-      const item = this.cart[index];
+      const item = this.cartItems[index];
       if (!item) return;
 
       if (symbol === 'increment') {
@@ -30,7 +31,7 @@ export const useProductStore = defineStore('product', {
         }
       } else {
         this.productCount = this.productCount - item.quantity;
-        this.cart.splice(index, 1);
+        this.cartItems.splice(index, 1);
       }
     },
   },
