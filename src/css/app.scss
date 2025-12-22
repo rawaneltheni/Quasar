@@ -1,1 +1,5 @@
 // app global css in SCSS form
+/* src/css/app.scss */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
