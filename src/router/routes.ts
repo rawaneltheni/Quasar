@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
     path: '/user',
     component: () => import('src/layouts/MainLayout.vue'),
     children: [
-      { path: 'home', component: () => import('src/pages/UserPage.vue') },
+      { path: '', component: () => import('src/pages/UserPage.vue') },
       { path: 'cart', component: () => import('src/pages/CartPage.vue') },
     ],
   },
@@ -27,7 +27,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('src/layouts/AdminLayout.vue'),
     children: [
       {
-        path: 'admin/dashboard',
+        path: '',
         component: () => import('src/pages/AdminDashboardPage.vue'),
         meta: { requiresAuth: true }, // ask for this (Route Guard)
       },
