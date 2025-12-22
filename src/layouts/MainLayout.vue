@@ -44,15 +44,12 @@
 <script setup lang="ts">
 import { useProductStore } from '../stores/product-store.js';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
 
-const router = useRouter();
+// const router = useRouter();
 
-// const title = 'My App';
+// const Title = '';
 
-const goToLogin = () => {
-  router.push('/login');
-};
 defineProps<{
   Title: string;
 }>();

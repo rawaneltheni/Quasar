@@ -8,7 +8,7 @@
         <q-space />
 
         <!-- Login button -->
-        <q-btn flat label="Login" icon="login" @click="goToLogin" />
+        <!-- <q-btn flat label="Login" icon="login" @click="goToLogin" /> -->
       </q-toolbar>
     </q-header>
 
@@ -40,22 +40,16 @@
 </template>
 
 <script setup lang="ts">
-import { useProductStore } from '../stores/product-store.js';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+// import { ref } from 'vue';
+// import { useRouter } from 'vue-router';
 
-const router = useRouter();
+// const router = useRouter();
 
 // // const title = 'My App';
 
-const goToLogin = () => {
-  router.push('/login');
-};
-defineProps<{
-  Title: string;
-}>();
-
-const productStore = useProductStore();
+// const goToLogin = () => {
+//   router.push('/auth');
+// };
 </script>
 
 <style></style>
