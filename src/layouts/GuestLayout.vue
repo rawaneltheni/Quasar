@@ -2,15 +2,17 @@
   <q-layout view="hHh LpR lFf">
     <q-header elevated class="bg-primary text-white">
       <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+        <q-toolbar-title> Quasar Shop </q-toolbar-title>
 
-        <q-toolbar-title>
-          {{ Title }}
-        </q-toolbar-title>
+        <!-- spacer pushes login to the right -->
+        <q-space />
+
+        <!-- Login button -->
+        <q-btn flat label="Login" icon="login" @click="goToLogin" />
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" bordered>
+    <!-- <q-drawer v-model="leftDrawerOpen" bordered>
       <q-list>
         <q-item-lable>Navigation Links</q-item-lable>
       </q-list>
@@ -27,17 +29,13 @@
           </q-item-section>
         </q-item>
       </q-list>
-    </q-drawer>
+    </q-drawer> -->
 
     <q-page-container>
       <router-view />
     </q-page-container>
 
-    <q-footer elevated class="bg-blue-8 text-white">
-      <q-tabs>
-        <q-route-tab v-for="nav in navs" :key="nav.to" :to="nav.to" clickable></q-route-tab>
-      </q-tabs>
-    </q-footer>
+    <q-footer elevated class="bg-blue-8 text-white"> </q-footer>
   </q-layout>
 </template>
 
@@ -48,7 +46,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-// const title = 'My App';
+// // const title = 'My App';
 
 const goToLogin = () => {
   router.push('/login');
@@ -57,28 +55,7 @@ defineProps<{
   Title: string;
 }>();
 
-const leftDrawerOpen = ref(true);
-
-const toggleLeftDrawer = () => {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-};
-
-const navs = ref([
-  { label: 'Home', icon: 'home', to: '/home' },
-  { label: 'Cart', icon: 'shopping_cart', to: '/cart' },
-]);
-
 const productStore = useProductStore();
 </script>
 
-<style>
-@media screen and (min-width: 1020px) {
-  .q-footer {
-    display: none;
-  }
-}
-
-/* .q-drawer .q-router-link--exact-active {
-  color: whitesmoke;
-} */
-</style>
+<style></style>
