@@ -27,10 +27,15 @@ const routes: RouteRecordRaw[] = [
     component: () => import('src/layouts/AdminLayout.vue'),
     children: [
       {
-        path: 'admin-dashboard',
+        path: 'admin/dashboard',
         component: () => import('src/pages/AdminDashboardPage.vue'),
         meta: { requiresAuth: true }, // ask for this (Route Guard)
       },
+      // {
+      //   path: 'admin/reports',
+      //   component: () => import('src/pages/AdminDashboardPage.vue'),
+
+      // },
     ],
   },
 
