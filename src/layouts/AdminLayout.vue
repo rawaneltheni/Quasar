@@ -10,8 +10,15 @@
         <div>
           <div class="text-xs uppercase tracking-wider text-gray-400 mb-4">Menu</div>
           <nav class="flex flex-col space-y-2">
-            <a href="#" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
+            <a
+              href="/#/admin"
+              class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
               >Overview</a
+            >
+            <a
+              href="/#/products"
+              class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
+              >Products</a
             >
             <a href="#" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
               >Reports</a

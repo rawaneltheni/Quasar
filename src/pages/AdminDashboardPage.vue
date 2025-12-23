@@ -2,14 +2,16 @@
   <q-page class="min-h-screen p-8">
     <!-- Page Header -->
     <div class="mb-8">
-      <h5 class="text-xl font-semibold text-gray-800 dark:text-gray-900">Dashboard</h5>
+      <h5 class="text-xl font-black text-gray-800 dark:text-gray-900">Dashboard</h5>
       <span class="text-sm text-gray-600 dark:text-gray-400">Easily managing your sales</span>
     </div>
 
     <!-- Stats Grid -->
     <div class="grid gap-6 lg:gap-8 md:grid-cols-3">
       <!-- Revenue Card -->
-      <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+      <div
+        class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800 transform hover:-translate-y-1 hover:shadow-lg"
+      >
         <div class="space-y-2">
           <div class="text-sm font-medium text-gray-500 dark:text-gray-400">Revenue</div>
           <div class="text-3xl font-semibold dark:text-gray-900">$192.1k</div>
@@ -36,7 +38,9 @@
       </div>
 
       <!-- Customers Card -->
-      <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+      <div
+        class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800 transform hover:-translate-y-1 hover:shadow-lg"
+      >
         <div class="space-y-2">
           <div class="text-sm font-medium text-gray-500 dark:text-gray-400">New customers</div>
           <div class="text-3xl font-semibold dark:text-gray-900">1340</div>
@@ -63,7 +67,9 @@
       </div>
 
       <!-- Orders Card -->
-      <div class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800">
+      <div
+        class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800 transition transform hover:-translate-y-1 hover:shadow-lg"
+      >
         <div class="space-y-2">
           <div class="text-sm font-medium text-gray-500 dark:text-gray-400">New orders</div>
           <div class="text-3xl font-semibold dark:text-gray-900">3543</div>
@@ -79,10 +85,10 @@
                 fill-rule="evenodd"
                 clip-rule="evenodd"
                 d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 
-                   1 0 11-2 0V8.414l-4.293 4.293a1 1 
-                   0 01-1.414 0L8 10.414l-4.293 
-                   4.293a1 1 0 01-1.414-1.414l5-5a1 
-                   1 0 011.414 0L11 10.586 14.586 7H12z"
+             1 0 11-2 0V8.414l-4.293 4.293a1 1 
+             0 01-1.414 0L8 10.414l-4.293 
+             4.293a1 1 0 01-1.414-1.414l5-5a1 
+             1 0 011.414 0L11 10.586 14.586 7H12z"
               />
             </svg>
           </div>
