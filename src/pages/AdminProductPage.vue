@@ -1,46 +1,39 @@
 <template>
   <div class="w-full">
     <!-- Top bar -->
-    <div class="flex flex-col flex-wrap gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <!-- Dropdown -->
-      <div class="dropdown relative inline-flex">
-        <button
-          id="dropdown-default"
-          type="button"
-          class="dropdown-toggle btn btn-outline btn-secondary font-normal"
-          aria-haspopup="menu"
-          aria-expanded="false"
-          aria-label="Dropdown"
-        >
-          <span class="icon-[tabler--clock]"></span>
-          Last 30 days
-          <span class="icon-[tabler--chevron-down] dropdown-open:rotate-180 size-4"></span>
-        </button>
-        <ul
-          class="dropdown-menu dropdown-open:opacity-100 hidden min-w-10"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="dropdown-default"
-        >
-          <li><a class="dropdown-item" href="javascript:void(0)">Last 3 days</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0)">Last 7 days</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0)">Last 30 days</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0)">Last 3 months</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0)">Last year</a></li>
-        </ul>
-      </div>
-
-      <!-- Search -->
-      <div class="input max-w-xs">
-        <span
-          class="icon-[tabler--search] text-base-content/80 my-auto me-3 size-5 shrink-0"
-        ></span>
-        <input
-          type="search"
-          class="grow"
-          placeholder="Search for a product ... "
-          id="leadingIconDefault"
-        />
+    <div class="flex flex-col">
+      <h5 class="text-2xl font-black tracking-tight text-gray-900">Products</h5>
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        Manage and organize your store's inventory.
+      </p>
+    </div>
+    <div class="w-full">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="relative w-full sm:w-72">
+          <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
+            <svg
+              class="h-4 w-4 text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+              />
+            </svg>
+          </div>
+          <input
+            type="search"
+            id="product-search"
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            placeholder="Search for a product..."
+          />
+        </div>
       </div>
     </div>
 
@@ -116,7 +109,7 @@
     <div class="flex flex-wrap items-center justify-between gap-2 py-4 pt-6">
       <div class="me-2 block max-w-sm text-sm text-base-content/80 sm:mb-0">
         Showing <span class="font-semibold text-base-content/80">1-4</span> of
-        <span class="font-semibold">20</span> products
+        <span class="font-semibold">{{ products.length }}</span> products
       </div>
       <nav class="join">
         <button type="button" class="btn btn-soft btn-square join-item">
