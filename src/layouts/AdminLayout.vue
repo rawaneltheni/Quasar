@@ -20,10 +20,14 @@
               class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
               >Products</a
             >
-            <a href="#" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
+            <a
+              href="/#/reports"
+              class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
               >Reports</a
             >
-            <a href="#" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
+            <a
+              href="/#/calendar"
+              class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
               >Calendar</a
             >
           </nav>
@@ -34,10 +38,14 @@
           <hr class="border-gray-700 my-4" />
           <div class="text-xs uppercase tracking-wider text-gray-400 mb-4">General</div>
           <nav class="flex flex-col space-y-2">
-            <a href="#" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
+            <a
+              href="/#/admin"
+              class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
               >Settings</a
             >
-            <a href="#" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
+            <a
+              href="/#/admin"
+              class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white transition"
               >Security</a
             >
           </nav>

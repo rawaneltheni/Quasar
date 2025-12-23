@@ -28,18 +28,21 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        component: () => import('src/pages/AdminDashboardPage.vue'),
+        component: () => import('src/pages/Admin/DashboardPage.vue'),
         meta: { requiresAuth: true }, // ask for this (Route Guard)
       },
       {
         path: '/products',
-        component: () => import('src/pages/AdminProductPage.vue'),
+        component: () => import('src/pages/Admin/ProductPage.vue'),
       },
-      // {
-      //   path: 'admin/reports',
-      //   component: () => import('src/pages/AdminDashboardPage.vue'),
-
-      // },
+      {
+        path: '/calendar',
+        component: () => import('src/pages/Admin/CalendarPage.vue'),
+      },
+      {
+        path: '/reports',
+        component: () => import('src/pages/Admin/ReportsPage.vue'),
+      },
     ],
   },
 
