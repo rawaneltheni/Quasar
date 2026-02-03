@@ -1,5 +1,40 @@
 <template>
-  <div class="quote-box">
+  <!-- PRAYER TIMES -->
+
+  <div class="min-h-screen flex flex-col bg-gray-100 p-4">
+    <!-- City & Date -->
+    <div class="mb-4">
+      <div class="text-4xl font-semibold text-gray-900">{{ city }}</div>
+      <small class="text-gray-500">Date: {{ currentDate }}</small>
+      <hr class="border-gray-200 mt-2" />
+    </div>
+
+    <!-- Prayer Cards -->
+    <div class="flex-1 overflow-auto">
+      <prayer-components :prayers="{ prayer: prayers }" />
+    </div>
+
+    <!-- City Dropdown -->
+    <div class="mt-4">
+      <label for="cities" class="block text-sm font-medium text-gray-700 mb-1">
+        Change city:
+      </label>
+      <select
+        name="cities"
+        id="cities"
+        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+        v-model="city"
+        @change="loadPrayer"
+      >
+        <option value="Benghazi">Benghazi</option>
+        <option value="Tripoli">Tripoli</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- KANYE QUOTES -->
+
+  <!-- <div class="quote-box">
     <transition name="fade" mode="out-in">
       <i :key="quote">"{{ quote }}"</i>
     </transition>
@@ -7,14 +42,21 @@
     <p>- Kanye West</p>
 
     <button @click="loadQuote">New quote</button>
-  </div>
+  </div> -->
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
 import { ref } from 'vue';
 import KanyeAPI from 'src/services/KanyeAPI.js';
+import prayerAPI from 'src/services/prayerAPI.js';
+import axios from 'axios';
+import prayerComponents from 'src/components/prayerComponents.vue';
+import type { Prayer } from 'src/models/prayer-models.js';
 
+const currentDate = ref(new Date().toLocaleDateString());
+const prayers = ref<{ prayerName: string; prayerTime: string }[]>([]);
+const city = ref('Benghazi'); // default city
+const country = ref('Libya'); // default country
 const quote = ref('');
 
 // ========== GET REQUESTS WITH AXIOS ==========
@@ -28,12 +70,23 @@ const quote = ref('');
 // };
 
 // built-in reusable method
-const loadQuote = async () => {
-  const reponse = await KanyeAPI.getQoute();
-  quote.value = reponse.data.quote;
-};
+// const loadQuote = async () => {
+//   const reponse = await KanyeAPI.getQoute();
+//   quote.value = reponse.data.quote;
+// };
+// loadQuote();
 
-loadQuote();
+const loadPrayer = async () => {
+  const timingsResponse = await prayerAPI.getPrayerTime(city.value, country.value);
+  // const namesResponse = await prayerAPI.getPrayerName(city.value, 'Libya');
+
+  const timings = timingsResponse.data.data.timings;
+  prayers.value = Object.keys(timings).map((key) => ({
+    prayerName: key,
+    prayerTime: timings[key],
+  }));
+};
+loadPrayer();
 
 // WITHOUT ASYNC
 
@@ -45,8 +98,7 @@ loadQuote();
 </script>
 
 <style>
-/* Quote container */
-.quote-box {
+/* .quote-box {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px 30px;
@@ -57,7 +109,6 @@ loadQuote();
   border-radius: 4px;
 }
 
-/* Quote text */
 .quote-box i {
   font-size: 1.4rem;
   color: #222;
@@ -66,7 +117,6 @@ loadQuote();
   line-height: 1.4;
 }
 
-/* Author */
 .quote-box p {
   margin: 0;
   font-size: 0.9rem;
@@ -74,7 +124,6 @@ loadQuote();
   text-align: right;
 }
 
-/* Button */
 .quote-box button {
   margin-top: 20px;
   padding: 8px 16px;
@@ -97,7 +146,6 @@ loadQuote();
   transform: scale(0.97);
 }
 
-/* Fade + slide animation */
 .fade-enter-active,
 .fade-leave-active {
   transition:
@@ -109,5 +157,5 @@ loadQuote();
 .fade-leave-to {
   opacity: 0;
   transform: translateY(6px);
-}
+} */
 </style>

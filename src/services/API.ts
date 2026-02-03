@@ -1,7 +1,8 @@
+// api.ts
 import axios from 'axios';
 
-export default function API(url: string = 'https://api.kanye.rest/') {
+export default function API(baseURL: string) {
   return axios.create({
-    baseURL: url,
+    baseURL,
   });
 }

@@ -1,7 +1,9 @@
-import API from "./API";
+import API from './API.js';
+
+const kanyeAPI = API('https://api.kanye.rest/');
 
 export default {
-  getQoute() {
-    return API().get('/');
+  getKanyeQuote() {
+    return kanyeAPI.get('/');
   },
 };
