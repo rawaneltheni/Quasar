@@ -1,7 +1,14 @@
-// This is just an example,
-// so you can safely delete all default props below
-
 export default {
-  failed: 'Action failed',
-  success: 'Action was successful'
+  lang: 'LANGUAGE',
+  logout: 'LOGOUT',
+  admindashbaord: 'Admin Dashboard',
+  menu: 'MENU',
+  overview: 'Overview',
+  products: 'Products',
+  reports: 'Reports',
+  calendar: 'Calendar',
+  general: 'General',
+  setting: 'Setting',
+  security: 'Security',
+  search: 'Search for anything ...',
 };

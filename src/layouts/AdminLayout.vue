@@ -4,27 +4,27 @@
     <q-drawer show-if-above side="left" width="260" class="bg-sidebar">
       <div class="q-pa-md column fit">
         <!-- Title -->
-        <div class="text-h6 q-mb-lg">Admin Dashboard</div>
+        <div class="text-h6 q-mb-lg">{{ $t('admindashbaord') }}</div>
 
         <!-- Menu -->
         <div>
-          <div class="text-caption text-muted q-mb-sm">MENU</div>
+          <div class="text-caption text-muted q-mb-sm">{{ $t('menu') }}</div>
 
           <q-list dense>
             <q-item clickable v-ripple to="/admin">
-              <q-item-section>Overview</q-item-section>
+              <q-item-section>{{ $t('overview') }}</q-item-section>
             </q-item>
 
             <q-item clickable v-ripple to="/products">
-              <q-item-section>Products</q-item-section>
+              <q-item-section>{{ $t('products') }}</q-item-section>
             </q-item>
 
             <q-item clickable v-ripple to="/reports">
-              <q-item-section>Reports</q-item-section>
+              <q-item-section>{{ $t('reports') }}</q-item-section>
             </q-item>
 
             <q-item clickable v-ripple to="/calendar">
-              <q-item-section>Calendar</q-item-section>
+              <q-item-section>{{ $t('calendar') }}</q-item-section>
             </q-item>
           </q-list>
         </div>
@@ -35,15 +35,15 @@
         <q-separator class="q-my-md" />
 
         <div>
-          <div class="text-caption text-muted q-mb-sm">GENERAL</div>
+          <div class="text-caption text-muted q-mb-sm">{{ $t('general') }}</div>
 
           <q-list dense>
             <q-item clickable v-ripple to="/admin">
-              <q-item-section>Settings</q-item-section>
+              <q-item-section>{{ $t('setting') }}</q-item-section>
             </q-item>
 
             <q-item clickable v-ripple to="/admin">
-              <q-item-section>Security</q-item-section>
+              <q-item-section>{{ $t('security') }}</q-item-section>
             </q-item>
           </q-list>
         </div>
@@ -54,14 +54,39 @@
     <q-header class="bg-header">
       <q-toolbar>
         <!-- Search -->
-        <q-input dense outlined placeholder="Search for anything..." class="q-mx-md col bg-surface">
+        <q-input dense outlined :placeholder="$t('search')" class="q-mx-md col bg-surface">
           <template #prepend>
             <q-icon name="search" />
           </template>
         </q-input>
 
         <!-- Logout -->
-        <q-btn color="primary" label="Logout" icon="logout" class="q-ml-sm" @click="handleLogout" />
+        <q-btn
+          color="primary"
+          :label="$t('logout')"
+          icon="logout"
+          class="q-ml-sm"
+          @click="handleLogout"
+        />
+
+        <!-- I18N -->
+        <div class="q-pa-md">
+          <q-btn-dropdown color="primary" :label="$t('lang')">
+            <q-list>
+              <q-item clickable v-close-popup @click="setLocale('en-US')">
+                <q-item-section>
+                  <q-item-label>English</q-item-label>
+                </q-item-section>
+              </q-item>
+
+              <q-item clickable v-close-popup @click="setLocale('ar-LY')">
+                <q-item-section>
+                  <q-item-label>العربية</q-item-label>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-btn-dropdown>
+        </div>
 
         <!-- Theme toggle -->
         <darkmode-component class="q-ml-sm" />
@@ -80,19 +105,29 @@
 <script setup>
 import { useAuthStore } from 'src/stores/auth-store';
 import { useRouter } from 'vue-router';
-import { useQuasar } from 'quasar';
+import { Lang, useQuasar } from 'quasar';
 import darkmodeComponent from 'src/components/darkmodeComponent.vue';
+import { useI18n } from 'vue-i18n';
 
 const $q = useQuasar();
 const router = useRouter();
 const auth = useAuthStore();
+const { locale, t } = useI18n();
+
+function setLocale(lang) {
+  locale.value = lang;
+  // log and notify so we can see the change
+  // eslint-disable-next-line no-console
+  console.log('Locale set to', locale.value);
+  $q.notify({ type: 'info', message: `Locale: ${locale.value}` });
+}
 
 async function handleLogout() {
   auth.logout();
 
   $q.notify({
     type: 'positive',
-    message: 'Logged out successfully',
+    message: t('logout'),
   });
 
   await router.push('/auth');

@@ -10,7 +10,7 @@
       "src/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.d.ts", "quasar.config.ts"],
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.d.ts", "quasar.config.ts", "src/i18n/ar-LY"],
 
   "exclude": ["dist", ".quasar", "node_modules"]
 }
