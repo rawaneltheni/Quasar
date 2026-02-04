@@ -108,16 +108,19 @@ import { useRouter } from 'vue-router';
 import { Lang, useQuasar } from 'quasar';
 import darkmodeComponent from 'src/components/darkmodeComponent.vue';
 import { useI18n } from 'vue-i18n';
+import { useI18nStore } from 'src/stores/i18n0store'; // redundant
 
 const $q = useQuasar();
 const router = useRouter();
 const auth = useAuthStore();
 const { locale, t } = useI18n();
+const i18nStore = useI18nStore();
 
-function setLocale(lang) {
-  locale.value = lang;
-  // log and notify so we can see the change
-  // eslint-disable-next-line no-console
+function setLocale(langCode) {
+  // Update vue-i18n runtime locale and persist via the store
+  locale.value = langCode;
+  i18nStore.setLocale(langCode);
+
   console.log('Locale set to', locale.value);
   $q.notify({ type: 'info', message: `Locale: ${locale.value}` });
 }

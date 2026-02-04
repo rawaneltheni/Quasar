@@ -1,5 +1,6 @@
 import { defineBoot } from '#q-app/wrappers';
 import { createI18n } from 'vue-i18n';
+import { LocalStorage } from 'quasar';
 
 import messages from '../i18n/index.js';
 
@@ -22,8 +23,11 @@ declare module 'vue-i18n' {
 /* eslint-enable @typescript-eslint/no-empty-object-type */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default defineBoot(({ app }: any) => {
+  // Read saved locale from LocalStorage (fallback to en-US)
+  const savedLocale = (LocalStorage.getItem<string>('locale') as string) ?? 'en-US';
+
   const i18n = createI18n<{ message: MessageSchema }, MessageLanguages>({
-    locale: 'en-US',
+    locale: savedLocale,
     legacy: false,
     messages,
   });
