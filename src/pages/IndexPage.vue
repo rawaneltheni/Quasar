@@ -46,17 +46,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+
 import KanyeAPI from 'src/services/KanyeAPI.js';
-import prayerAPI from 'src/services/prayerAPI.js';
 import axios from 'axios';
+
+import prayerAPI from 'src/services/prayerAPI.js';
 import prayerComponents from 'src/components/prayerComponents.vue';
 import type { Prayer } from 'src/models/prayer-models.js';
 
 const currentDate = ref(new Date().toLocaleDateString());
 const prayers = ref<{ prayerName: string; prayerTime: string }[]>([]);
-const city = ref('Benghazi'); // default city
-const country = ref('Libya'); // default country
+const city = ref('Benghazi');
+const country = ref('Libya');
+
 const quote = ref('');
 
 // ========== GET REQUESTS WITH AXIOS ==========
@@ -78,7 +81,6 @@ const quote = ref('');
 
 const loadPrayer = async () => {
   const timingsResponse = await prayerAPI.getPrayerTime(city.value, country.value);
-  // const namesResponse = await prayerAPI.getPrayerName(city.value, 'Libya');
 
   const timings = timingsResponse.data.data.timings;
   prayers.value = Object.keys(timings).map((key) => ({
@@ -158,4 +160,8 @@ loadPrayer();
   opacity: 0;
   transform: translateY(6px);
 } */
+
+.my-custom-toggle {
+  border: 1px solid #027be3;
+}
 </style>

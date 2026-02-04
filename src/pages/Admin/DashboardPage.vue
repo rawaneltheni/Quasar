@@ -1,101 +1,104 @@
 <template>
-  <q-page class="min-h-screen p-8">
+  <q-page class="q-pa-lg">
     <!-- Page Header -->
-    <div class="mb-8">
-      <h5 class="text-xl font-black text-gray-800 dark:text-gray-900">Dashboard</h5>
-      <span class="text-sm text-gray-600 dark:text-gray-400">Easily managing your sales</span>
+    <div class="q-mb-xl">
+      <h5 :class="headerClasses">Dashboard</h5>
+      <span :class="subHeaderClasses">Easily managing your sales</span>
     </div>
 
     <!-- Stats Grid -->
-    <div class="grid gap-6 lg:gap-8 md:grid-cols-3">
+    <div class="row q-col-gutter-lg">
       <!-- Revenue Card -->
-      <div
-        class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800 transform hover:-translate-y-1 hover:shadow-lg"
-      >
-        <div class="space-y-2">
-          <div class="text-sm font-medium text-gray-500 dark:text-gray-400">Revenue</div>
-          <div class="text-3xl font-semibold dark:text-gray-900">$192.1k</div>
-          <div class="flex items-center space-x-1 text-sm font-medium text-green-600">
-            <span>32k increase</span>
-            <svg
-              class="w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 
-                   0V8.414l-4.293 4.293a1 1 0 01-1.414 
-                   0L8 10.414l-4.293 4.293a1 1 0 
-                   01-1.414-1.414l5-5a1 1 0 
-                   011.414 0L11 10.586 14.586 7H12z"
-              />
-            </svg>
-          </div>
-        </div>
+      <div class="col-12 col-md-4">
+        <q-card flat bordered class="q-pa-md dashboard-card">
+          <q-card-section>
+            <div :class="captionClasses">Revenue</div>
+            <div :class="valueClasses">$192.1k</div>
+            <div :class="increaseClasses">
+              <span>32k increase</span>
+              <q-icon name="trending_up" size="18px" />
+            </div>
+          </q-card-section>
+        </q-card>
       </div>
 
       <!-- Customers Card -->
-      <div
-        class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800 transform hover:-translate-y-1 hover:shadow-lg"
-      >
-        <div class="space-y-2">
-          <div class="text-sm font-medium text-gray-500 dark:text-gray-400">New customers</div>
-          <div class="text-3xl font-semibold dark:text-gray-900">1340</div>
-          <div class="flex items-center space-x-1 text-sm font-medium text-red-600">
-            <span>3% decrease</span>
-            <svg
-              class="w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M12 13a1 1 0 100 2h5a1 1 0 001-1V9a1 1 
-                   0 10-2 0v2.586l-4.293-4.293a1 1 0 
-                   00-1.414 0L8 9.586 3.707 5.293a1 1 
-                   0 00-1.414 1.414l5 5a1 1 0 
-                   001.414 0L11 9.414 14.586 13H12z"
-              />
-            </svg>
-          </div>
-        </div>
+      <div class="col-12 col-md-4">
+        <q-card flat bordered class="q-pa-md dashboard-card">
+          <q-card-section>
+            <div :class="captionClasses">New customers</div>
+            <div :class="valueClasses">1340</div>
+            <div :class="decreaseClasses">
+              <span>3% decrease</span>
+              <q-icon name="trending_down" size="18px" />
+            </div>
+          </q-card-section>
+        </q-card>
       </div>
 
       <!-- Orders Card -->
-      <div
-        class="relative p-6 rounded-2xl bg-white shadow dark:bg-gray-800 transition transform hover:-translate-y-1 hover:shadow-lg"
-      >
-        <div class="space-y-2">
-          <div class="text-sm font-medium text-gray-500 dark:text-gray-400">New orders</div>
-          <div class="text-3xl font-semibold dark:text-gray-900">3543</div>
-          <div class="flex items-center space-x-1 text-sm font-medium text-green-600">
-            <span>7% increase</span>
-            <svg
-              class="w-4 h-4"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 
-             1 0 11-2 0V8.414l-4.293 4.293a1 1 
-             0 01-1.414 0L8 10.414l-4.293 
-             4.293a1 1 0 01-1.414-1.414l5-5a1 
-             1 0 011.414 0L11 10.586 14.586 7H12z"
-              />
-            </svg>
-          </div>
-        </div>
+      <div class="col-12 col-md-4">
+        <q-card flat bordered class="q-pa-md dashboard-card">
+          <q-card-section>
+            <div :class="captionClasses">New orders</div>
+            <div :class="valueClasses">3543</div>
+            <div :class="increaseClasses">
+              <span>7% increase</span>
+              <q-icon name="trending_up" size="18px" />
+            </div>
+          </q-card-section>
+        </q-card>
       </div>
     </div>
   </q-page>
 </template>
 
-<script setup lang="ts"></script>
+<script setup>
+import { computed } from 'vue';
+import { useQuasar } from 'quasar';
+
+const $q = useQuasar();
+
+// Dynamic classes based on dark mode
+const headerClasses = computed(() =>
+  $q.dark.isActive ? 'text-xl font-black text-gray-100' : 'text-xl font-black text-gray-800',
+);
+
+const subHeaderClasses = computed(() =>
+  $q.dark.isActive ? 'text-sm text-gray-400' : 'text-sm text-gray-600',
+);
+
+const captionClasses = computed(() =>
+  $q.dark.isActive ? 'text-sm text-gray-400' : 'text-sm text-gray-500',
+);
+
+const valueClasses = computed(() =>
+  $q.dark.isActive
+    ? 'text-3xl font-semibold text-gray-100'
+    : 'text-3xl font-semibold text-gray-900',
+);
+
+const increaseClasses = computed(() =>
+  $q.dark.isActive
+    ? 'row items-center text-green-400 text-sm font-medium'
+    : 'row items-center text-green-600 text-sm font-medium',
+);
+
+const decreaseClasses = computed(() =>
+  $q.dark.isActive
+    ? 'row items-center text-red-400 text-sm font-medium'
+    : 'row items-center text-red-600 text-sm font-medium',
+);
+</script>
+
+<style scoped>
+.dashboard-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+</style>
