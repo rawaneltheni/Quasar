@@ -1,11 +1,11 @@
 <template>
   <!-- PRAYER TIMES -->
 
-  <div class="min-h-screen flex flex-col bg-gray-100 p-4">
+  <q-page>
     <!-- City & Date -->
-    <div class="mb-4">
-      <div class="text-4xl font-semibold text-gray-900">{{ city }}</div>
-      <small class="text-gray-500">Date: {{ currentDate }}</small>
+    <div>
+      <div :class="headerClasses">{{ city }}</div>
+      <small :class="subHeaderClasses">Date: {{ currentDate }}</small>
       <hr class="border-gray-200 mt-2" />
     </div>
 
@@ -30,7 +30,7 @@
         <option value="Tripoli">Tripoli</option>
       </select>
     </div>
-  </div>
+  </q-page>
 
   <!-- KANYE QUOTES -->
 
@@ -49,12 +49,15 @@
 import { getPrayerTime } from 'src/boot/axios/services/prayerAPI';
 import PrayerComponents from 'src/components/prayerComponents.vue';
 import { onMounted, ref } from 'vue';
+import { useQuasar } from 'quasar';
+import { useSharedComputed } from 'src/composables/useSharedComputed.js';
 
 const currentDate = ref(new Date().toLocaleDateString());
 const prayers = ref<{ prayerName: string; prayerTime: string }[]>([]);
 const city = ref('Benghazi');
 const country = ref('Libya');
-
+const $q = useQuasar();
+const { headerClasses, subHeaderClasses } = useSharedComputed();
 const quote = ref('');
 
 // ========== GET REQUESTS WITH AXIOS ==========
@@ -100,70 +103,3 @@ onMounted(() => {
   loadPrayer();
 });
 </script>
-
-<style>
-/* .quote-box {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px 30px;
-  text-align: center;
-  font-family: Georgia, serif;
-  background: #f9f9f9;
-  border-left: 4px solid #333;
-  border-radius: 4px;
-}
-
-.quote-box i {
-  font-size: 1.4rem;
-  color: #222;
-  display: block;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-
-.quote-box p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #666;
-  text-align: right;
-}
-
-.quote-box button {
-  margin-top: 20px;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border: none;
-  background: #333;
-  color: #fff;
-  border-radius: 4px;
-  transition:
-    background 0.2s ease,
-    transform 0.1s ease;
-}
-
-.quote-box button:hover {
-  background: #555;
-}
-
-.quote-box button:active {
-  transform: scale(0.97);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(6px);
-} */
-
-.my-custom-toggle {
-  border: 1px solid #027be3;
-}
-</style>
