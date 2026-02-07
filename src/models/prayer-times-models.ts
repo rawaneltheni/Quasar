@@ -1,6 +1,13 @@
-import { Prayer } from './prayer-models.js';
-
-interface PrayerTimes {
-  prayer: Prayer[];
+interface PrayerTimings {
+  Fajr: string;
+  Dhuhr: string;
+  Asr: string;
+  Maghrib: string;
+  Isha: string;
 }
-export type { PrayerTimes };
+
+interface PrayerApiResponse {
+  timings: PrayerTimings;
+}
+
+export type { PrayerApiResponse };

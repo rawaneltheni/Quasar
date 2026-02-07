@@ -1,4 +1,4 @@
-import { kanyeAPI } from '../axios.js';
+import { kanyeAPI } from '../../axios.js';
 
 // MAKE YOUR FUNCTIONS THAT USE THE SHARED BASEURL API
 export function getQuote() {

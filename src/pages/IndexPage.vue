@@ -11,7 +11,7 @@
 
     <!-- Prayer Cards -->
     <div class="flex-1 overflow-auto">
-      <prayer-components :prayers="{ prayer: prayers }" />
+      <prayer-components :prayers="prayers" />
     </div>
 
     <!-- City Dropdown -->
@@ -46,14 +46,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-
-import KanyeAPI from 'src/services/KanyeAPI.js';
-import axios from 'axios';
-
-import prayerAPI from 'src/services/prayerAPI.js';
-import prayerComponents from 'src/components/prayerComponents.vue';
-import type { Prayer } from 'src/models/prayer-models.js';
+import { getPrayerTime } from 'src/boot/axios/services/prayerAPI';
+import PrayerComponents from 'src/components/prayerComponents.vue';
+import { onMounted, ref } from 'vue';
 
 const currentDate = ref(new Date().toLocaleDateString());
 const prayers = ref<{ prayerName: string; prayerTime: string }[]>([]);
@@ -79,24 +74,31 @@ const quote = ref('');
 // };
 // loadQuote();
 
-const loadPrayer = async () => {
-  const timingsResponse = await prayerAPI.getPrayerTime(city.value, country.value);
-
-  const timings = timingsResponse.data.data.timings;
-  prayers.value = Object.keys(timings).map((key) => ({
-    prayerName: key,
-    prayerTime: timings[key],
-  }));
-};
-loadPrayer();
-
 // WITHOUT ASYNC
 
 // axios.get('https://api.kanye.rest/').then((reponse) => {
 //   quote.value = reponse.data.quote;
 // });
 
-// ========== POST REQUESTS WITH AXIOS ==========
+const loadPrayer = async () => {
+  try {
+    const data = await getPrayerTime(city.value, country.value);
+
+    prayers.value = [
+      { prayerName: 'Fajr', prayerTime: data.timings.Fajr },
+      { prayerName: 'Dhuhr', prayerTime: data.timings.Dhuhr },
+      { prayerName: 'Asr', prayerTime: data.timings.Asr },
+      { prayerName: 'Maghrib', prayerTime: data.timings.Maghrib },
+      { prayerName: 'Isha', prayerTime: data.timings.Isha },
+    ];
+  } catch (error) {
+    console.error('Failed to load prayer times', error);
+  }
+};
+
+onMounted(() => {
+  loadPrayer();
+});
 </script>
 
 <style>
